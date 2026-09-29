@@ -66,12 +66,15 @@ export default function Header() {
         </a>
 
         {/* Navegação Desktop */}
-        <nav aria-label="Navegação Principal" className="hidden lg:flex items-center gap-7">
+        <nav
+          aria-label="Navegação Principal"
+          className="hidden lg:flex flex-1 items-center justify-center gap-5 px-5"
+        >
           {nav.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="text-sm font-semibold text-white/80 transition-colors hover:text-accent"
+              className="shrink-0 whitespace-nowrap text-sm font-semibold text-white/80 transition-colors hover:text-accent"
             >
               {item.label}
             </a>
@@ -79,7 +82,7 @@ export default function Header() {
         </nav>
 
         {/* Ações Desktop */}
-        <div className="hidden sm:flex items-center gap-4">
+        <div className="hidden shrink-0 sm:flex items-center gap-4">
           <a
             href={`tel:+55${site.phone.replace(/\D/g, "")}`}
             className="hidden xl:flex items-center gap-2 text-xs font-semibold text-white/70 hover:text-white transition"
