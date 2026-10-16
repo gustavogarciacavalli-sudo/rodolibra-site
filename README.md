@@ -10,9 +10,9 @@
 ## 🎯 Objetivo do Projeto
 
 Desenvolvido para solucionar os desafios de comunicação e presença digital da **Rodolibra**, o site cumpre os seguintes requisitos:
-1. **Apresentação Digital Profissional:** Identidade visual sóbria nas cores oficiais (#0B1F33, #164A70, #1AE05A, #17212B, #F3F6F8).
+1. **Apresentação Digital Profissional:** Identidade visual sóbria nas cores institucionais (#0B1F33, #164A70, #EA580C, #17212B, #F4F6F9).
 2. **Serviços Claros:** Apresentação em cards de Carga Geral, Carga Fracionada, Carga Dedicada e Cargas Especiais.
-3. **Formulário de Cotação Estruturada:** Coleta os dados mínimos essenciais (Origem, Destino, Mercadoria, Peso, Dimensões e Observações) e gera uma mensagem formatada e pronta para o WhatsApp.
+3. **Formulário de Cotação Estruturada:** Coleta os dados mínimos essenciais (Origem, Destino, Mercadoria, Peso, Dimensões e Observações) e direciona para o WhatsApp.
 4. **FAQ Interativo:** Responde às principais dúvidas levantadas no projeto (rotas, congelados, cotação e contatos).
 5. **Simplicidade de Manutenção:** Todas as informações, textos, contatos e serviços estão centralizados no arquivo `lib/site.ts` para que pessoas sem conhecimento avançado em programação possam atualizar o site.
 
@@ -65,17 +65,17 @@ rodolibra-site/
 │   └── page.tsx             # Página única contendo as 6 seções principais
 ├── components/
 │   ├── Header.tsx           # Menu de navegação fixo, responsivo com drawer mobile
-│   ├── Hero.tsx             # 1ª dobra com CTA, painel de rotas e simulador visual
+│   ├── Hero.tsx             # 1ª dobra com chamada principal e consulta de modalidades
 │   ├── About.tsx            # Apresentação da empresa e contexto da extensão universitária
-│   ├── Services.tsx         # Cards modernos com ícones Lucide e atalho para cotação
-│   ├── Quote.tsx            # Formulário com pré-visualização ao vivo do WhatsApp
+│   ├── Services.tsx         # Cards de serviços com ícones Lucide e atalho para cotação
+│   ├── Quote.tsx            # Formulário de cotação integrado ao WhatsApp
 │   ├── Faq.tsx              # Acordeão de perguntas frequentes com busca em tempo real
 │   ├── Contact.tsx          # Seção de contato com telefone, e-mail e botões diretos
 │   └── Footer.tsx           # Rodapé institucional e botão flutuante do WhatsApp (FAB)
 ├── lib/
 │   └── site.ts              # CONFIGURAÇÃO CENTRAL: Edite textos, contatos e itens aqui
 ├── .env.example             # Exemplo de configuração de variáveis de ambiente
-├── tailwind.config.ts       # Paleta de cores (#0B1F33, #164A70, #1AE05A) e tipografia
+├── tailwind.config.ts       # Paleta de cores (#0B1F33, #164A70, #EA580C) e tipografia
 └── package.json             # Dependências e scripts de execução
 ```
 

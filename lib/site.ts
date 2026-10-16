@@ -61,10 +61,10 @@ export const site = {
 
 export const nav = [
   { id: "inicio", label: "Início" },
-  { id: "sobre", label: "Sobre a Rodolibra" },
+  { id: "sobre", label: "A Empresa" },
   { id: "servicos", label: "Serviços" },
   { id: "cotacao", label: "Cotação" },
-  { id: "faq", label: "Perguntas Frequentes" },
+  { id: "faq", label: "Dúvidas" },
   { id: "contato", label: "Contato" },
 ] as const;
 

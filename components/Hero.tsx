@@ -4,186 +4,172 @@ import { useState } from "react";
 import {
   ArrowRight,
   MessageCircle,
-  ShieldCheck,
   CheckCircle2,
-  Clock,
   MapPin,
-  Box,
   Truck,
-  Sparkles,
+  Phone,
 } from "lucide-react";
 import { site, waLink } from "@/lib/site";
 
 export default function Hero() {
-  const [selectedType, setSelectedType] = useState<"geral" | "fracionada" | "dedicada">("fracionada");
+  const [selectedType, setSelectedType] = useState<
+    "fracionada" | "geral" | "dedicada"
+  >("fracionada");
 
   const modalidadeInfo = {
+    fracionada: {
+      titulo: "Carga Fracionada",
+      detalhe:
+        "Para volumes menores, caixas e pallets que não exigem o uso exclusivo de um caminhão.",
+      indicacao: "Otimização de custo no compartilhamento de rota",
+    },
     geral: {
       titulo: "Carga Geral Rodoviária",
-      detalhe: "Ideal para insumos, manufaturados e mercadorias secas.",
-      beneficio: "Itinerário flexível e conferência na coleta",
-    },
-    fracionada: {
-      titulo: "Carga Fracionada (LTL)",
-      detalhe: "Excelente custo-benefício para lotes menores e caixas.",
-      beneficio: "Economia ao compartilhar espaço de frete",
+      detalhe:
+        "Transporte de mercadorias secas, insumos industriais e produtos embalados com conferência na coleta.",
+      indicacao: "Emissão completa de documentação fiscal (CT-e / DACTE)",
     },
     dedicada: {
-      titulo: "Carga Dedicada / Fechada",
-      detalhe: "Veículo exclusivo e rota direta expressa até a entrega.",
-      beneficio: "Prioridade máxima e saída imediata",
+      titulo: "Carga Dedicada (Lotação)",
+      detalhe:
+        "Veículo exclusivo para a sua operação, com saída direta da coleta ao destinatário final.",
+      indicacao: "Menor tempo de trânsito e sem paradas intermediárias",
     },
   };
 
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-gradient-to-b from-navy to-[#071726] pt-12 pb-20 text-white lg:pt-20 lg:pb-28"
+      className="relative bg-navy pt-12 pb-16 text-white lg:pt-20 lg:pb-24 border-b border-white/10"
     >
-      {/* Luzes de ambientação de fundo */}
-      <div
-        className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-brand/30 blur-[120px]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-accent/15 blur-[140px]"
-        aria-hidden
-      />
-
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          
-          {/* Coluna da Esquerda: Proposta de Valor e CTAs */}
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          {/* Coluna Esquerda: Chamada Principal */}
           <div className="lg:col-span-7">
-            {/* Tag / Badge superior */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 text-xs font-bold text-accent backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              <span>LOGÍSTICA E TRANSPORTE RODOVIÁRIO</span>
+            <div className="inline-flex items-center gap-2 rounded-md border border-accent-light/30 bg-accent/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent-light">
+              <span>Transporte Rodoviário de Cargas</span>
             </div>
 
-            {/* Headline Principal */}
-            <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-5xl lg:leading-[1.15]">
-              Sua carga no <span className="text-accent">destino certo</span>, com agilidade e total clareza.
+            <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl lg:leading-[1.15]">
+              Sua carga no destino certo, com{" "}
+              <span className="text-accent-light">agilidade</span> e negociação
+              direta.
             </h1>
 
-            {/* Texto Descritivo */}
-            <p className="mt-6 max-w-2xl text-base text-slate-300 sm:text-lg leading-relaxed">
-              A <strong>Rodolibra</strong> cuida do transporte das suas mercadorias sem burocracia. 
-              Organize os dados do seu frete em minutos, envie diretamente para o nosso WhatsApp 
-              e receba uma cotação transparente adaptada à sua necessidade.
+            <p className="mt-5 max-w-2xl text-base text-slate-300 sm:text-lg leading-relaxed">
+              A <strong className="text-white">Rodolibra</strong> realiza o
+              transporte rodoviário de cargas gerais, fracionadas e dedicadas a
+              partir de Curitiba e Região Metropolitana. Solicite sua cotação sem
+              burocracia e fale diretamente com nossa operação.
             </p>
 
-            {/* Botões de Ação */}
+            {/* Botões Principais */}
             <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
               <a
                 href="#cotacao"
-                className="btn-primary flex items-center justify-center gap-2 px-7 py-4 text-base"
+                className="btn-primary px-7 py-4 text-base"
               >
-                <span>Solicitar cotação rápida</span>
+                <span>Solicitar cotação de frete</span>
                 <ArrowRight size={18} aria-hidden />
               </a>
 
               <a
-                href={waLink("Olá! Gostaria de conversar com a Rodolibra sobre transporte de cargas.")}
+                href={waLink(
+                  "Olá! Gostaria de falar com a Rodolibra sobre transporte de cargas."
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-ghost flex items-center justify-center gap-2 px-6 py-4 text-base"
+                className="btn-ghost px-6 py-4 text-base"
               >
-                <MessageCircle size={20} className="text-accent" aria-hidden />
-                <span>Falar no WhatsApp</span>
+                <MessageCircle
+                  size={19}
+                  className="text-accent-light"
+                  aria-hidden
+                />
+                <span>Falar pelo WhatsApp</span>
               </a>
             </div>
 
-            {/* Diferenciais rápidos */}
-            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3 border-t border-white/10 pt-6">
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-300">
-                <CheckCircle2 size={16} className="text-accent shrink-0" aria-hidden />
-                <span>Cotação sem intermediários</span>
+            {/* Destaques Operacionais */}
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 border-t border-white/10 pt-6">
+              <div className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-slate-200">
+                <CheckCircle2
+                  size={16}
+                  className="text-accent-light shrink-0"
+                  aria-hidden
+                />
+                <span>Atendimento sem intermediários</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-300">
-                <CheckCircle2 size={16} className="text-accent shrink-0" aria-hidden />
-                <span>Atendimento direto e ágil</span>
+              <div className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-slate-200">
+                <CheckCircle2
+                  size={16}
+                  className="text-accent-light shrink-0"
+                  aria-hidden
+                />
+                <span>Cargas fracionadas e lotação</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-300">
-                <CheckCircle2 size={16} className="text-accent shrink-0" aria-hidden />
-                <span>Cargas seguras e monitoradas</span>
+              <div className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-slate-200">
+                <CheckCircle2
+                  size={16}
+                  className="text-accent-light shrink-0"
+                  aria-hidden
+                />
+                <span>Base em Curitiba e Região (PR)</span>
               </div>
             </div>
           </div>
 
-          {/* Coluna da Direita: Elemento Visual Tecnológico e Interativo */}
+          {/* Coluna Direita: Quadro de Consulta Rápida */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-3xl border border-white/15 bg-navy-800/80 p-6 shadow-2xl backdrop-blur-xl sm:p-7">
-              {/* Badge de cabeçalho do card */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div className="flex items-center gap-2.5">
-                  <div className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-accent">
-                    <Truck size={18} aria-hidden />
-                  </div>
+            <div className="rounded-2xl border border-white/15 bg-navy-800 p-6 sm:p-7 shadow-xl">
+              <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent text-white">
+                  <Truck size={20} aria-hidden />
+                </div>
+                <div>
+                  <h2 className="text-base font-bold text-white leading-snug">
+                    Modalidades de Transporte
+                  </h2>
+                  <p className="text-xs text-slate-400">
+                    Consulte o perfil ideal para a sua remessa
+                  </p>
+                </div>
+              </div>
+
+              {/* Base e Cobertura */}
+              <div className="my-5 rounded-xl bg-navy-950/80 p-4 border border-white/10">
+                <div className="flex items-start gap-3">
+                  <MapPin
+                    size={18}
+                    className="text-accent-light shrink-0 mt-0.5"
+                  />
                   <div>
-                    <h2 className="text-sm font-bold text-white leading-none">
-                      Painel de Cotação Rodolibra
-                    </h2>
-                    <span className="text-[11px] text-slate-400">
-                      Simulação & Planejamento
-                    </span>
-                  </div>
-                </div>
-                <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-semibold text-emerald-400 border border-emerald-500/25">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
-                  Online
-                </span>
-              </div>
-
-              {/* Rota Visual */}
-              <div className="my-5 rounded-2xl bg-navy-950/70 p-4 border border-white/5">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
-                  <span>Itinerário Previsto</span>
-                  <span className="text-accent text-[10px]">Rotas sob medida</span>
-                </div>
-                
-                <div className="relative flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="h-7 w-7 rounded-full bg-brand/60 grid place-items-center text-accent text-xs font-bold border border-accent/30">
-                      <MapPin size={14} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-white">Origem</p>
-                      <p className="text-[11px] text-slate-400">Curitiba & Região</p>
-                    </div>
-                  </div>
-
-                  {/* Linha animada com caminhãozinho */}
-                  <div className="flex-1 px-3 flex flex-col items-center">
-                    <span className="text-[10px] text-accent/80 font-mono mb-1">Direto</span>
-                    <div className="w-full h-1 bg-white/10 rounded-full relative overflow-hidden">
-                      <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-brand via-accent to-brand w-full animate-pulse" />
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <div className="h-7 w-7 rounded-full bg-accent/20 grid place-items-center text-accent text-xs font-bold border border-accent/40">
-                      <Box size={14} />
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs font-bold text-white">Destino</p>
-                      <p className="text-[11px] text-slate-400">Sua Cidade / UF</p>
-                    </div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                      Origem e Cobertura
+                    </p>
+                    <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                      Saídas a partir de{" "}
+                      <strong className="text-white">
+                        Curitiba e Região Metropolitana (PR)
+                      </strong>
+                      , com avaliação de rotas estaduais e interestaduais sob
+                      consulta.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Seletor Rápido de Modalidade */}
+              {/* Abas de Modalidade */}
               <div>
-                <p className="text-xs font-bold text-slate-300 mb-2.5">
-                  Selecione uma modalidade para consultar:
+                <p className="text-xs font-semibold text-slate-300 mb-2.5">
+                  Selecione o tipo de operação:
                 </p>
                 <div className="grid grid-cols-3 gap-2">
                   {(["fracionada", "geral", "dedicada"] as const).map((key) => {
                     const active = selectedType === key;
                     const labels = {
                       fracionada: "Fracionada",
-                      geral: "Geral",
+                      geral: "Carga Geral",
                       dedicada: "Dedicada",
                     };
                     return (
@@ -191,10 +177,10 @@ export default function Hero() {
                         key={key}
                         type="button"
                         onClick={() => setSelectedType(key)}
-                        className={`rounded-xl py-2 px-2 text-xs font-bold transition-all text-center ${
+                        className={`rounded-lg py-2.5 px-2 text-xs font-bold transition-colors text-center ${
                           active
-                            ? "bg-accent text-navy shadow-md shadow-accent/20"
-                            : "bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5"
+                            ? "bg-accent text-white shadow-sm"
+                            : "bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10"
                         }`}
                       >
                         {labels[key]}
@@ -203,40 +189,42 @@ export default function Hero() {
                   })}
                 </div>
 
-                {/* Detalhe da modalidade selecionada */}
-                <div className="mt-3.5 rounded-xl bg-white/5 p-3.5 border border-white/5">
-                  <p className="text-xs font-bold text-accent">
+                <div className="mt-3.5 rounded-xl bg-white/5 p-4 border border-white/10">
+                  <p className="text-sm font-bold text-white">
                     {modalidadeInfo[selectedType].titulo}
                   </p>
-                  <p className="mt-1 text-xs text-slate-300">
+                  <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
                     {modalidadeInfo[selectedType].detalhe}
                   </p>
-                  <div className="mt-2 flex items-center gap-1.5 text-[11px] text-slate-400">
-                    <Sparkles size={12} className="text-accent" />
-                    <span>{modalidadeInfo[selectedType].beneficio}</span>
+                  <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center gap-2 text-xs font-medium text-accent-light">
+                    <CheckCircle2 size={14} className="shrink-0" />
+                    <span>{modalidadeInfo[selectedType].indicacao}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Botão de cotação direta deste card */}
               <a
                 href="#cotacao"
-                className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-brand/50 hover:bg-brand py-3 text-xs font-bold text-white transition border border-white/10"
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 hover:bg-white/15 py-3 text-xs sm:text-sm font-bold text-white transition border border-white/15"
               >
-                <span>Preencher dados desta carga</span>
-                <ArrowRight size={14} />
+                <span>Preencher dados para cotação</span>
+                <ArrowRight size={15} />
               </a>
 
-              {/* Rodapé informativo */}
-              <div className="mt-4 flex items-center justify-between text-[11px] text-slate-400 pt-3 border-t border-white/5">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck size={13} className="text-accent" /> Contato oficial: Gustavo Rios
+              <div className="mt-4 flex items-center justify-between text-xs text-slate-300 pt-3.5 border-t border-white/10">
+                <span className="font-medium">
+                  Atendimento: <strong className="text-white">{site.contactName}</strong>
                 </span>
-                <span>(41) 9789-1225</span>
+                <a
+                  href={`tel:+55${site.phone.replace(/\D/g, "")}`}
+                  className="inline-flex items-center gap-1.5 font-bold text-accent-light hover:underline"
+                >
+                  <Phone size={13} />
+                  <span>{site.phone}</span>
+                </a>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
