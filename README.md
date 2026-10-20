@@ -2,7 +2,7 @@
 
 > **Projeto de Extensão Universitária:** TI e Sociedade  
 > **Empresa Parceira:** Rodolibra Transportes  
-> **Contato Documentado:** Gustavo Rios — +55 41 99220-8330  
+> **Contato Documentado:** Gustavo Rios — +55 41 99920-8330  
 > **Stack:** Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Lucide Icons
 
 ---
@@ -37,7 +37,7 @@ cp .env.example .env.local
 ```
 No arquivo `.env.local`, preencha o número de WhatsApp oficial com DDD (apenas números):
 ```env
-NEXT_PUBLIC_WHATSAPP_NUMBER=5541992208330
+NEXT_PUBLIC_WHATSAPP_NUMBER=5541999208330
 ```
 *Nota: Se a variável não estiver definida, o site utilizará o link universal do WhatsApp (`https://api.whatsapp.com/send?text=...`), preservando a mensagem pronta e aguardando a seleção do contato.*
 
@@ -104,7 +104,7 @@ git push -u origin main
 2. Clique em **"Add New Project"** e selecione o repositório `rodolibra-site`.
 3. Em **Environment Variables**, adicione (se desejado):
    - Key: `NEXT_PUBLIC_WHATSAPP_NUMBER`
-   - Value: `5541992208330`
+   - Value: `5541999208330`
 4. Clique em **Deploy**.
 
 Ou publique via terminal (com a CLI da Vercel instalada):

@@ -9,9 +9,9 @@
  * perguntas frequentes e dados de contato podem ser editados aqui.
  */
 
-// Número oficial de WhatsApp da Rodolibra (+55 41 99220-8330 - Gustavo Rios).
+// Número oficial de WhatsApp da Rodolibra (+55 41 99920-8330 - Gustavo Rios).
 // Pode ser sobrescrito via NEXT_PUBLIC_WHATSAPP_NUMBER em .env.local se necessário.
-const DEFAULT_WHATSAPP_NUMBER = "5541992208330";
+const DEFAULT_WHATSAPP_NUMBER = "5541999208330";
 const RAW_ENV_PHONE =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || DEFAULT_WHATSAPP_NUMBER;
 export const WHATSAPP_NUMBER =
@@ -39,8 +39,8 @@ export const site = {
   
   // Dados oficiais documentados no projeto de extensão
   contactName: "Gustavo Rios",
-  phone: "+55 41 99220-8330",
-  formattedPhone: "+55 41 99220-8330",
+  phone: "+55 41 99920-8330",
+  formattedPhone: "+55 41 99920-8330",
   
   // Campos estruturados para substituição posterior após autorização
   email: "contato@rodolibra.com.br", // Provisório / Sugerido
@@ -178,7 +178,7 @@ export const faqs: FaqItem[] = [
   {
     id: "como-contatar",
     q: "Como entrar em contato com a Rodolibra?",
-    a: "O canal mais rápido é pelo WhatsApp, através do botão flutuante no canto da tela ou clicando nos botões e números de contato da página. Você pode falar diretamente pelo número +55 41 99220-8330 com Gustavo Rios.",
+    a: "O canal mais rápido é pelo WhatsApp, através do botão flutuante no canto da tela ou clicando nos botões e números de contato da página. Você pode falar diretamente pelo número +55 41 99920-8330 com Gustavo Rios.",
     provisional: false,
   },
   {
