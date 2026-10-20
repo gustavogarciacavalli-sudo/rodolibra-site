@@ -9,23 +9,23 @@
  * perguntas frequentes e dados de contato podem ser editados aqui.
  */
 
-// Se NEXT_PUBLIC_WHATSAPP_NUMBER não estiver definido em .env.local,
-// deixamos configurado para substituição posterior conforme autorização da Rodolibra.
-// O número documentado no projeto de extensão é: (41) 9789-1225 (Gustavo Rios).
-const RAW_ENV_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
-export const WHATSAPP_NUMBER = RAW_ENV_PHONE.replace(/\D/g, "");
+// Número oficial de WhatsApp da Rodolibra (+55 41 99220-8330 - Gustavo Rios).
+// Pode ser sobrescrito via NEXT_PUBLIC_WHATSAPP_NUMBER em .env.local se necessário.
+const DEFAULT_WHATSAPP_NUMBER = "5541992208330";
+const RAW_ENV_PHONE =
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || DEFAULT_WHATSAPP_NUMBER;
+export const WHATSAPP_NUMBER =
+  RAW_ENV_PHONE.replace(/\D/g, "") || DEFAULT_WHATSAPP_NUMBER;
 
 /**
- * Gera o link universal do WhatsApp.
- * Se o número estiver configurado, direciona direto para ele.
- * Se não estiver preenchido, abre o seletor universal do WhatsApp mantendo a mensagem pronta.
+ * Gera o link direto para o WhatsApp da Rodolibra com a mensagem formatada.
  */
-export const waLink = (text: string) => {
-  if (WHATSAPP_NUMBER) {
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+export const waLink = (text?: string) => {
+  const baseUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
+  if (text && text.trim().length > 0) {
+    return `${baseUrl}?text=${encodeURIComponent(text)}`;
   }
-  // Link universal seguro quando o número exato de WhatsApp ainda aguarda autorização oficial
-  return `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  return baseUrl;
 };
 
 export const TBD = "Informação em homologação com a Rodolibra";
@@ -39,8 +39,8 @@ export const site = {
   
   // Dados oficiais documentados no projeto de extensão
   contactName: "Gustavo Rios",
-  phone: "(41) 9789-1225",
-  formattedPhone: "+55 (41) 9789-1225",
+  phone: "+55 41 99220-8330",
+  formattedPhone: "+55 41 99220-8330",
   
   // Campos estruturados para substituição posterior após autorização
   email: "contato@rodolibra.com.br", // Provisório / Sugerido
@@ -178,7 +178,7 @@ export const faqs: FaqItem[] = [
   {
     id: "como-contatar",
     q: "Como entrar em contato com a Rodolibra?",
-    a: "O canal mais rápido é pelo WhatsApp, através do botão flutuante no canto da tela ou clicando nos botões de contato da página. Você também pode falar pelo telefone de contato documentado: (41) 9789-1225 com Gustavo Rios.",
+    a: "O canal mais rápido é pelo WhatsApp, através do botão flutuante no canto da tela ou clicando nos botões e números de contato da página. Você pode falar diretamente pelo número +55 41 99220-8330 com Gustavo Rios.",
     provisional: false,
   },
   {

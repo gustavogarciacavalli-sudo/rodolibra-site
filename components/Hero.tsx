@@ -216,7 +216,11 @@ export default function Hero() {
                   Atendimento: <strong className="text-white">{site.contactName}</strong>
                 </span>
                 <a
-                  href={`tel:+55${site.phone.replace(/\D/g, "")}`}
+                  href={waLink(
+                    "Olá! Gostaria de falar com a Rodolibra sobre transporte de cargas."
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-bold text-accent-light hover:underline"
                 >
                   <Phone size={13} />

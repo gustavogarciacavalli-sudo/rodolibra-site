@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, Truck, Phone, ArrowRight } from "lucide-react";
-import { nav, site } from "@/lib/site";
+import { nav, site, waLink } from "@/lib/site";
 
 export function Logo({ light = true }: { light?: boolean }) {
   return (
@@ -85,7 +85,11 @@ export default function Header() {
         {/* Ações Desktop */}
         <div className="hidden lg:flex items-center gap-5 shrink-0">
           <a
-            href={`tel:+55${site.phone.replace(/\D/g, "")}`}
+            href={waLink(
+              "Olá! Gostaria de falar com o atendimento da Rodolibra."
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden xl:flex items-center gap-2 whitespace-nowrap text-xs font-semibold text-slate-300 hover:text-white transition-colors"
           >
             <Phone size={14} className="text-accent-light shrink-0" aria-hidden />
@@ -139,7 +143,11 @@ export default function Header() {
 
           <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
             <a
-              href={`tel:+55${site.phone.replace(/\D/g, "")}`}
+              href={waLink(
+                "Olá! Gostaria de falar com o atendimento da Rodolibra."
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white"
             >
               <Phone size={15} className="text-accent-light" />

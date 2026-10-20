@@ -14,11 +14,12 @@ export default function Contact() {
   const canais = [
     {
       icon: Phone,
-      titulo: "Telefone Direto",
+      titulo: "Telefone & WhatsApp",
       valor: site.phone,
-      subtexto: `Atendimento com ${site.contactName}`,
-      href: `tel:+55${site.phone.replace(/\D/g, "")}`,
-      cta: "Ligar agora",
+      subtexto: `Atendimento direto com ${site.contactName}`,
+      href: waLink("Olá! Gostaria de falar com o atendimento da Rodolibra."),
+      cta: "Conversar no WhatsApp",
+      target: "_blank",
     },
     {
       icon: MessageCircle,
@@ -82,9 +83,20 @@ export default function Contact() {
                     {item.titulo}
                   </h3>
 
-                  <p className="mt-1.5 text-base font-extrabold text-accent break-words">
-                    {item.valor}
-                  </p>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target={item.target}
+                      rel={item.target ? "noopener noreferrer" : undefined}
+                      className="mt-1.5 block text-base font-extrabold text-accent hover:underline break-words"
+                    >
+                      {item.valor}
+                    </a>
+                  ) : (
+                    <p className="mt-1.5 text-base font-extrabold text-accent break-words">
+                      {item.valor}
+                    </p>
+                  )}
 
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     {item.subtexto}

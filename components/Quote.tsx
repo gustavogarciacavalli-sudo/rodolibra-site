@@ -175,12 +175,19 @@ export default function Quote() {
                 Atendimento Comercial Direto
               </p>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm text-slate-200">
-                <span className="flex items-center gap-2 font-semibold text-white">
+                <a
+                  href={waLink(
+                    "Olá! Gostaria de falar com o atendimento comercial da Rodolibra."
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-semibold text-white hover:text-accent-light transition-colors"
+                >
                   <Phone size={15} className="text-accent-light shrink-0" />
                   <span>
                     {site.phone} — {site.contactName}
                   </span>
-                </span>
+                </a>
                 <span className="flex items-center gap-1.5 text-xs text-slate-400">
                   <Clock size={14} className="text-accent-light shrink-0" />
                   <span>{site.hours}</span>

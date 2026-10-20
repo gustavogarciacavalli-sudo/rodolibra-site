@@ -58,11 +58,20 @@ export function Footer() {
             </h4>
 
             <div className="space-y-2 text-xs sm:text-sm text-slate-300">
-              <p className="flex items-center gap-2">
-                <Phone size={15} className="text-accent-light shrink-0" />
-                <span>
-                  {site.phone} — {site.contactName}
-                </span>
+              <p>
+                <a
+                  href={waLink(
+                    "Olá! Gostaria de falar com o atendimento da Rodolibra."
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-accent-light transition-colors"
+                >
+                  <Phone size={15} className="text-accent-light shrink-0" />
+                  <span>
+                    {site.phone} — {site.contactName}
+                  </span>
+                </a>
               </p>
               <p className="flex items-center gap-2">
                 <MapPin size={15} className="text-accent-light shrink-0" />
