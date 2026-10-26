@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "cargas",
     "logística",
     "cotação de frete",
-    "Curitiba",
+    "Brasil",
     "carga fracionada",
     "carga dedicada",
   ],

@@ -2,7 +2,7 @@
 
 > **Projeto de Extensão Universitária:** TI e Sociedade  
 > **Empresa Parceira:** Rodolibra Transportes  
-> **Contato Documentado:** Gustavo Rios — +55 41 99920-8330  
+> **Contato oficial:** +55 41 99891-3381
 > **Stack:** Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Lucide Icons
 
 ---
@@ -12,7 +12,7 @@
 Desenvolvido para solucionar os desafios de comunicação e presença digital da **Rodolibra**, o site cumpre os seguintes requisitos:
 1. **Apresentação Digital Profissional:** Identidade visual sóbria nas cores institucionais (#0B1F33, #164A70, #EA580C, #17212B, #F4F6F9).
 2. **Serviços Claros:** Apresentação em cards de Carga Geral, Carga Fracionada, Carga Dedicada e Cargas Especiais.
-3. **Formulário de Cotação Estruturada:** Coleta os dados mínimos essenciais (Origem, Destino, Mercadoria, Peso, Dimensões e Observações) e direciona para o WhatsApp.
+3. **Formulário de Cotação Estruturada:** Coleta origem, destino, tipo de carga, peso, dimensões, quantidade de volumes, data prevista e observações, e direciona os dados para o WhatsApp.
 4. **FAQ Interativo:** Responde às principais dúvidas levantadas no projeto (rotas, congelados, cotação e contatos).
 5. **Simplicidade de Manutenção:** Todas as informações, textos, contatos e serviços estão centralizados no arquivo `lib/site.ts` para que pessoas sem conhecimento avançado em programação possam atualizar o site.
 
@@ -37,7 +37,7 @@ cp .env.example .env.local
 ```
 No arquivo `.env.local`, preencha o número de WhatsApp oficial com DDD (apenas números):
 ```env
-NEXT_PUBLIC_WHATSAPP_NUMBER=5541999208330
+NEXT_PUBLIC_WHATSAPP_NUMBER=5541998913381
 ```
 *Nota: Se a variável não estiver definida, o site utilizará o link universal do WhatsApp (`https://api.whatsapp.com/send?text=...`), preservando a mensagem pronta e aguardando a seleção do contato.*
 
@@ -84,7 +84,7 @@ rodolibra-site/
 ## 📝 Como Editar o Conteúdo (Para Não-Programadores)
 
 Abra o arquivo [`lib/site.ts`](lib/site.ts):
-- **Telefone / Contato:** Atualize `site.phone` ou `site.contactName`.
+- **Telefone:** Atualize `site.phone` e a variável `NEXT_PUBLIC_WHATSAPP_NUMBER`.
 - **E-mail / Horário:** Atualize `site.email` ou `site.hours`.
 - **Serviços:** Altere ou adicione novos itens na lista `services`.
 - **Perguntas do FAQ:** Edite as perguntas e respostas na lista `faqs`.
@@ -104,7 +104,7 @@ git push -u origin main
 2. Clique em **"Add New Project"** e selecione o repositório `rodolibra-site`.
 3. Em **Environment Variables**, adicione (se desejado):
    - Key: `NEXT_PUBLIC_WHATSAPP_NUMBER`
-   - Value: `5541999208330`
+   - Value: `5541998913381`
 4. Clique em **Deploy**.
 
 Ou publique via terminal (com a CLI da Vercel instalada):

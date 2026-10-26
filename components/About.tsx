@@ -103,10 +103,11 @@ export default function About() {
               <MapPin size={18} className="text-accent shrink-0 mt-0.5" />
               <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 <strong className="text-navy block">
-                  Base em Curitiba e Região Metropolitana — PR
+                  Atendimento em todo o Brasil
                 </strong>
-                Rotas para o interior do Paraná e demais estados são avaliadas
-                sob consulta de acordo com a carga e programação.
+                Atendemos empresas de diferentes segmentos. Cada rota é
+                analisada de acordo com a origem, o destino, a carga e a
+                programação solicitada.
               </div>
             </div>
           </div>

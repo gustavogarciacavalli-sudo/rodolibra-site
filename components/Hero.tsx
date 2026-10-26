@@ -58,9 +58,9 @@ export default function Hero() {
 
             <p className="mt-5 max-w-2xl text-base text-slate-300 sm:text-lg leading-relaxed">
               A <strong className="text-white">Rodolibra</strong> realiza o
-              transporte rodoviário de cargas gerais, fracionadas e dedicadas a
-              partir de Curitiba e Região Metropolitana. Solicite sua cotação sem
-              burocracia e fale diretamente com nossa operação.
+              transporte rodoviário de cargas gerais, fracionadas e dedicadas
+              para empresas de diferentes segmentos em todo o Brasil. Solicite
+              sua cotação e fale diretamente com nossa equipe.
             </p>
 
             {/* Botões Principais */}
@@ -114,7 +114,7 @@ export default function Hero() {
                   className="text-accent-light shrink-0"
                   aria-hidden
                 />
-                <span>Base em Curitiba e Região (PR)</span>
+                <span>Atendimento em todo o Brasil</span>
               </div>
             </div>
           </div>
@@ -145,15 +145,13 @@ export default function Hero() {
                   />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                      Origem e Cobertura
+                      Cobertura Nacional
                     </p>
                     <p className="mt-1 text-xs text-slate-300 leading-relaxed">
-                      Saídas a partir de{" "}
-                      <strong className="text-white">
-                        Curitiba e Região Metropolitana (PR)
-                      </strong>
-                      , com avaliação de rotas estaduais e interestaduais sob
-                      consulta.
+                      Atendimento rodoviário em{" "}
+                      <strong className="text-white">todo o Brasil</strong>.
+                      Informe origem, destino e características da carga para a
+                      análise da rota e preparação da cotação.
                     </p>
                   </div>
                 </div>
@@ -213,7 +211,8 @@ export default function Hero() {
 
               <div className="mt-4 flex items-center justify-between text-xs text-slate-300 pt-3.5 border-t border-white/10">
                 <span className="font-medium">
-                  Atendimento: <strong className="text-white">{site.contactName}</strong>
+                  Atendimento:{" "}
+                  <strong className="text-white">equipe Rodolibra</strong>
                 </span>
                 <a
                   href={waLink(

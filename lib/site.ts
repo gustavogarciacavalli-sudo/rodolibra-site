@@ -9,9 +9,9 @@
  * perguntas frequentes e dados de contato podem ser editados aqui.
  */
 
-// Número oficial de WhatsApp da Rodolibra (+55 41 99920-8330 - Gustavo Rios).
+// Número oficial de WhatsApp da Rodolibra (+55 41 99891-3381).
 // Pode ser sobrescrito via NEXT_PUBLIC_WHATSAPP_NUMBER em .env.local se necessário.
-const DEFAULT_WHATSAPP_NUMBER = "5541999208330";
+const DEFAULT_WHATSAPP_NUMBER = "5541998913381";
 const RAW_ENV_PHONE =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || DEFAULT_WHATSAPP_NUMBER;
 export const WHATSAPP_NUMBER =
@@ -38,9 +38,8 @@ export const site = {
     "Apresentação moderna e solicitação direta de cotações para transporte rodoviário. Informações organizadas sem complicação para novos clientes.",
   
   // Dados oficiais documentados no projeto de extensão
-  contactName: "Gustavo Rios",
-  phone: "+55 41 99920-8330",
-  formattedPhone: "+55 41 99920-8330",
+  phone: "+55 41 99891-3381",
+  formattedPhone: "+55 41 99891-3381",
   
   // Campos estruturados para substituição posterior após autorização
   email: "contato@rodolibra.com.br", // Provisório / Sugerido
@@ -49,8 +48,8 @@ export const site = {
   hours: "Segunda a Sexta: 08h às 18h",
   isHoursProvisional: true,
   
-  baseRegion: "Curitiba e Região Metropolitana — PR (Atendimento sob consulta para rotas estaduais e interestaduais)",
-  isRegionProvisional: true,
+  baseRegion: "Atendimento em todo o Brasil",
+  isRegionProvisional: false,
   
   projectInfo: {
     title: "Projeto de Extensão Universitária: TI e Sociedade",
@@ -148,7 +147,7 @@ export const faqs: FaqItem[] = [
   {
     id: "info-necessaria",
     q: "Quais informações são necessárias para solicitar uma cotação?",
-    a: "Para agilizar seu orçamento, precisamos de: cidade de origem e destino, peso estimado (kg), dimensões aproximadas (comprimento, largura e altura) ou quantidade de volumes/pallets, tipo de mercadoria e qualquer observação relevante (fragilidade, urgência ou controle de temperatura). Você pode preencher todos esses dados diretamente no formulário deste site!",
+    a: "Para agilizar seu orçamento, informe: origem, destino, tipo de carga ou produto, peso, volume ou dimensões, quantidade de volumes, data prevista para a coleta e observações complementares. Você pode preencher todos esses dados diretamente no formulário deste site.",
     provisional: false,
   },
   {
@@ -160,8 +159,8 @@ export const faqs: FaqItem[] = [
   {
     id: "regioes-atendidas",
     q: "Quais regiões a Rodolibra atende?",
-    a: "A base de contato documentada está localizada em Curitiba e Região Metropolitana (Paraná). O atendimento para outras cidades do Paraná, estados vizinhos ou rotas interestaduais é avaliado caso a caso. Recomendamos informar origem e destino no formulário para consultarmos imediatamente a disponibilidade de atendimento.",
-    provisional: true,
+    a: "A Rodolibra atende empresas de diferentes segmentos em todo o Brasil. Informe a cidade e o estado de origem e destino no formulário para que a equipe analise a rota e prepare a cotação.",
+    provisional: false,
   },
   {
     id: "tipos-de-carga",
@@ -178,7 +177,7 @@ export const faqs: FaqItem[] = [
   {
     id: "como-contatar",
     q: "Como entrar em contato com a Rodolibra?",
-    a: "O canal mais rápido é pelo WhatsApp, através do botão flutuante no canto da tela ou clicando nos botões e números de contato da página. Você pode falar diretamente pelo número +55 41 99920-8330 com Gustavo Rios.",
+    a: "O canal mais rápido é o WhatsApp oficial da Rodolibra: +55 41 99891-3381. Use o botão flutuante ou os botões de contato da página para falar com a equipe de atendimento.",
     provisional: false,
   },
   {

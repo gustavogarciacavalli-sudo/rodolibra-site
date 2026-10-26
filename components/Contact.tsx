@@ -5,7 +5,6 @@ import {
   Clock,
   MapPin,
   ExternalLink,
-  UserCheck,
   Building2,
 } from "lucide-react";
 import { site, waLink } from "@/lib/site";
@@ -16,7 +15,7 @@ export default function Contact() {
       icon: Phone,
       titulo: "Telefone & WhatsApp",
       valor: site.phone,
-      subtexto: `Atendimento direto com ${site.contactName}`,
+      subtexto: "Atendimento realizado pela equipe da Rodolibra",
       href: waLink("Olá! Gostaria de falar com o atendimento da Rodolibra."),
       cta: "Conversar no WhatsApp",
       target: "_blank",
@@ -138,21 +137,16 @@ export default function Contact() {
                 <span>Base Operacional e Cobertura</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Nossa operação rodoviária tem base em Curitiba e Região
-                Metropolitana (PR). Para coletas ou entregas em outras cidades
-                do Paraná e rotas interestaduais, consulte a disponibilidade
-                informando a rota desejada.
+                A Rodolibra atende empresas de diferentes segmentos em todo o
+                Brasil. Informe a origem, o destino e os dados da carga para que
+                a equipe analise a rota e prepare a cotação.
               </p>
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-5 text-xs font-semibold text-slate-700 pt-4 border-t border-slate-200">
               <span className="flex items-center gap-1.5">
-                <UserCheck size={16} className="text-accent shrink-0" />
-                <span>Responsável: {site.contactName}</span>
-              </span>
-              <span className="flex items-center gap-1.5">
                 <MapPin size={16} className="text-accent shrink-0" />
-                <span>Curitiba e Região Metropolitana — PR</span>
+                <span>Atendimento em todo o Brasil</span>
               </span>
             </div>
           </div>
@@ -173,7 +167,7 @@ export default function Contact() {
 
             <a
               href={waLink(
-                "Olá, Gustavo! Gostaria de solicitar uma cotação com a Rodolibra."
+                "Olá! Gostaria de solicitar uma cotação com a Rodolibra."
               )}
               target="_blank"
               rel="noopener noreferrer"

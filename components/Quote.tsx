@@ -19,6 +19,8 @@ interface FormState {
   destino: string;
   peso: string;
   dimensoes: string;
+  quantidadeVolumes: string;
+  dataColeta: string;
   mercadoria: string;
   modalidade: string;
   obs: string;
@@ -29,6 +31,8 @@ const initialForm: FormState = {
   destino: "",
   peso: "",
   dimensoes: "",
+  quantidadeVolumes: "",
+  dataColeta: "",
   mercadoria: "",
   modalidade: "Carga Fracionada",
   obs: "",
@@ -37,6 +41,9 @@ const initialForm: FormState = {
 export function generateWhatsAppMessage(f: FormState): string {
   const line = (label: string, val: string) =>
     `• *${label}:* ${val.trim() || "A definir"}`;
+  const dataColeta = f.dataColeta
+    ? f.dataColeta.split("-").reverse().join("/")
+    : "";
 
   const lines = [
     "📦 *SOLICITAÇÃO DE COTAÇÃO — RODOLIBRA*",
@@ -44,11 +51,13 @@ export function generateWhatsAppMessage(f: FormState): string {
     "",
     line("Origem", f.origem),
     line("Destino", f.destino),
-    line("Tipo de mercadoria", f.mercadoria),
+    line("Tipo de carga ou produto", f.mercadoria),
     line("Modalidade pretendida", f.modalidade),
-    line("Peso estimado", f.peso),
-    line("Dimensões / Volumes", f.dimensoes),
-    line("Observações específicas", f.obs),
+    line("Peso e unidade", f.peso),
+    line("Volume ou dimensões", f.dimensoes),
+    line("Quantidade de volumes", f.quantidadeVolumes),
+    line("Data prevista para coleta", dataColeta),
+    line("Observações complementares", f.obs || "Sem observações"),
     "",
     "_Enviado pelo site oficial da Rodolibra._",
   ];
@@ -75,7 +84,18 @@ export default function Quote() {
   const isOrigemValid = form.origem.trim().length > 0;
   const isDestinoValid = form.destino.trim().length > 0;
   const isMercadoriaValid = form.mercadoria.trim().length > 0;
-  const isFormValid = isOrigemValid && isDestinoValid && isMercadoriaValid;
+  const isPesoValid = form.peso.trim().length > 0;
+  const isDimensoesValid = form.dimensoes.trim().length > 0;
+  const isQuantidadeVolumesValid = Number(form.quantidadeVolumes) >= 1;
+  const isDataColetaValid = form.dataColeta.trim().length > 0;
+  const isFormValid =
+    isOrigemValid &&
+    isDestinoValid &&
+    isMercadoriaValid &&
+    isPesoValid &&
+    isDimensoesValid &&
+    isQuantidadeVolumesValid &&
+    isDataColetaValid;
 
   const currentMessage = generateWhatsAppMessage(form);
 
@@ -130,8 +150,8 @@ export default function Quote() {
                         Informe os dados da carga
                       </strong>
                       <span className="mt-0.5 block text-xs text-slate-300 leading-relaxed">
-                        Indique origem, destino, tipo de mercadoria, peso e
-                        volumes.
+                        Indique origem, destino, carga, peso, dimensões,
+                        volumes e data de coleta.
                       </span>
                     </div>
                   </li>
@@ -184,9 +204,7 @@ export default function Quote() {
                   className="flex items-center gap-2 font-semibold text-white hover:text-accent-light transition-colors"
                 >
                   <Phone size={15} className="text-accent-light shrink-0" />
-                  <span>
-                    {site.phone} — {site.contactName}
-                  </span>
+                  <span>{site.phone}</span>
                 </a>
                 <span className="flex items-center gap-1.5 text-xs text-slate-400">
                   <Clock size={14} className="text-accent-light shrink-0" />
@@ -302,7 +320,7 @@ export default function Quote() {
                       className="mb-1.5 flex items-center gap-1.5 text-xs font-bold text-navy uppercase tracking-wider"
                     >
                       <PackageSearch size={14} className="text-accent" />
-                      <span>Tipo de Mercadoria</span>
+                      <span>Tipo de Carga ou Produto</span>
                       <span className="text-red-600">*</span>
                     </label>
                     <input
@@ -333,7 +351,8 @@ export default function Quote() {
                         className="mb-1.5 flex items-center gap-1.5 text-xs font-bold text-navy uppercase tracking-wider"
                       >
                         <Scale size={14} className="text-accent" />
-                        <span>Peso Estimado (kg ou ton)</span>
+                        <span>Peso e Unidade</span>
+                        <span className="text-red-600">*</span>
                       </label>
                       <input
                         id="peso"
@@ -341,7 +360,10 @@ export default function Quote() {
                         value={form.peso}
                         onChange={(e) => updateField("peso", e.target.value)}
                         placeholder="Ex: 350 kg ou 2 toneladas"
-                        className="field"
+                        className={`field ${
+                          touched && !isPesoValid ? "field-error" : ""
+                        }`}
+                        required
                       />
                     </div>
 
@@ -351,7 +373,8 @@ export default function Quote() {
                         className="mb-1.5 flex items-center gap-1.5 text-xs font-bold text-navy uppercase tracking-wider"
                       >
                         <PackageSearch size={14} className="text-accent" />
-                        <span>Dimensões / Volumes</span>
+                        <span>Volume ou Dimensões</span>
+                        <span className="text-red-600">*</span>
                       </label>
                       <input
                         id="dimensoes"
@@ -360,13 +383,70 @@ export default function Quote() {
                         onChange={(e) =>
                           updateField("dimensoes", e.target.value)
                         }
-                        placeholder="Ex: 120 x 80 x 100 cm (2 pallets)"
-                        className="field"
+                        placeholder="Ex: 120 x 80 x 100 cm por volume"
+                        className={`field ${
+                          touched && !isDimensoesValid ? "field-error" : ""
+                        }`}
+                        required
                       />
                     </div>
                   </div>
 
-                  {/* Linha 4: Observações */}
+                  {/* Linha 4: Quantidade de volumes e data */}
+                  <div className="grid gap-4 sm:grid-cols-2 mb-4">
+                    <div>
+                      <label
+                        htmlFor="quantidadeVolumes"
+                        className="mb-1.5 flex items-center gap-1.5 text-xs font-bold text-navy uppercase tracking-wider"
+                      >
+                        <PackageSearch size={14} className="text-accent" />
+                        <span>Quantidade de Volumes</span>
+                        <span className="text-red-600">*</span>
+                      </label>
+                      <input
+                        id="quantidadeVolumes"
+                        type="number"
+                        min="1"
+                        inputMode="numeric"
+                        value={form.quantidadeVolumes}
+                        onChange={(e) =>
+                          updateField("quantidadeVolumes", e.target.value)
+                        }
+                        placeholder="Ex: 2"
+                        className={`field ${
+                          touched && !isQuantidadeVolumesValid
+                            ? "field-error"
+                            : ""
+                        }`}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="dataColeta"
+                        className="mb-1.5 flex items-center gap-1.5 text-xs font-bold text-navy uppercase tracking-wider"
+                      >
+                        <Clock size={14} className="text-accent" />
+                        <span>Data Prevista para Coleta</span>
+                        <span className="text-red-600">*</span>
+                      </label>
+                      <input
+                        id="dataColeta"
+                        type="date"
+                        value={form.dataColeta}
+                        onChange={(e) =>
+                          updateField("dataColeta", e.target.value)
+                        }
+                        className={`field ${
+                          touched && !isDataColetaValid ? "field-error" : ""
+                        }`}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Linha 5: Observações */}
                   <div className="mb-6">
                     <label
                       htmlFor="obs"
@@ -399,8 +479,8 @@ export default function Quote() {
                       role="alert"
                       className="mt-3.5 rounded-lg border border-red-200 bg-red-50 p-3 text-center text-xs font-medium text-red-700"
                     >
-                      Preencha os campos obrigatórios (Origem, Destino e Tipo de
-                      Mercadoria) para enviar sua solicitação.
+                      Preencha os campos obrigatórios de origem, destino, carga,
+                      peso, dimensões, quantidade de volumes e data de coleta.
                     </div>
                   )}
 

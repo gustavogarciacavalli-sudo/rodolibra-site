@@ -68,14 +68,12 @@ export function Footer() {
                   className="inline-flex items-center gap-2 hover:text-accent-light transition-colors"
                 >
                   <Phone size={15} className="text-accent-light shrink-0" />
-                  <span>
-                    {site.phone} — {site.contactName}
-                  </span>
+                  <span>{site.phone}</span>
                 </a>
               </p>
               <p className="flex items-center gap-2">
                 <MapPin size={15} className="text-accent-light shrink-0" />
-                <span>Curitiba e Região Metropolitana — PR</span>
+                <span>Atendimento em todo o Brasil</span>
               </p>
             </div>
 

@@ -151,7 +151,7 @@ export default function Header() {
               className="flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white"
             >
               <Phone size={15} className="text-accent-light" />
-              <span>{site.phone} — {site.contactName}</span>
+              <span>{site.phone}</span>
             </a>
             <a
               href="#cotacao"
