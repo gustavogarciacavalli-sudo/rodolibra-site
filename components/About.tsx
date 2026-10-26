@@ -3,9 +3,7 @@ import {
   MessageSquare,
   FileCheck2,
   MapPin,
-  GraduationCap,
   Truck,
-  ArrowRight,
 } from "lucide-react";
 
 export default function About() {
@@ -78,10 +76,9 @@ export default function About() {
           })}
         </div>
 
-        {/* Blocos Institucionais Alinhados (2 colunas de mesma altura) */}
-        <div className="mt-8 grid gap-6 lg:grid-cols-12 items-stretch">
-          {/* Coluna 1: Atuação e Base Operacional */}
-          <div className="rounded-xl bg-white p-6 sm:p-8 border border-slate-200 shadow-card lg:col-span-7 flex flex-col justify-between">
+        {/* Atuação e cobertura */}
+        <div className="mt-8">
+          <div className="rounded-xl bg-white p-6 sm:p-8 border border-slate-200 shadow-card flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent/10 text-accent">
@@ -109,44 +106,6 @@ export default function About() {
                 analisada de acordo com a origem, o destino, a carga e a
                 programação solicitada.
               </div>
-            </div>
-          </div>
-
-          {/* Coluna 2: Parceria Universitária (Item importante do projeto) */}
-          <div className="rounded-xl bg-navy p-6 sm:p-8 text-white shadow-card lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent text-white">
-                  <GraduationCap size={20} />
-                </span>
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-accent-light">
-                    Extensão Universitária
-                  </span>
-                  <h3 className="text-lg font-bold text-white leading-snug">
-                    Projeto TI e Sociedade
-                  </h3>
-                </div>
-              </div>
-              <p className="mt-4 text-sm text-slate-300 leading-relaxed">
-                Este canal digital foi estruturado em parceria com o projeto de
-                extensão universitária <em>TI e Sociedade</em>, com o objetivo de
-                modernizar o atendimento da Rodolibra e agilizar o envio de
-                cotações por novos clientes.
-              </p>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between gap-4">
-              <span className="text-xs text-slate-300 font-medium">
-                Precisa cotar um transporte?
-              </span>
-              <a
-                href="#cotacao"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-accent-light hover:underline shrink-0"
-              >
-                <span>Ir para o formulário</span>
-                <ArrowRight size={14} />
-              </a>
             </div>
           </div>
         </div>

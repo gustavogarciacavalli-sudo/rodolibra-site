@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "carga fracionada",
     "carga dedicada",
   ],
-  authors: [{ name: "Projeto de Extensão TI e Sociedade" }],
+  authors: [{ name: "Rodolibra Transportes" }],
   openGraph: {
     title: "Rodolibra | Transporte e Logística",
     description: "Sua carga no destino certo, com agilidade e total transparência. Solicite cotação via WhatsApp.",

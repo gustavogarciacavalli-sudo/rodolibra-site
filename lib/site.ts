@@ -2,8 +2,6 @@
  * ============================================================================
  * RODOLIBRA - ARQUIVO CENTRAL DE CONFIGURAÇÃO E DADOS
  * ============================================================================
- * Projeto de Extensão Universitária: "TI e Sociedade"
- * 
  * Este arquivo foi projetado para facilitar a manutenção futura por pessoas
  * sem conhecimento avançado de programação. Todos os textos, serviços,
  * perguntas frequentes e dados de contato podem ser editados aqui.
@@ -37,7 +35,7 @@ export const site = {
   subheadline:
     "Apresentação moderna e solicitação direta de cotações para transporte rodoviário. Informações organizadas sem complicação para novos clientes.",
   
-  // Dados oficiais documentados no projeto de extensão
+  // Dados oficiais de atendimento
   phone: "+55 41 99891-3381",
   formattedPhone: "+55 41 99891-3381",
   
@@ -51,11 +49,6 @@ export const site = {
   baseRegion: "Atendimento em todo o Brasil",
   isRegionProvisional: false,
   
-  projectInfo: {
-    title: "Projeto de Extensão Universitária: TI e Sociedade",
-    partner: "Rodolibra Transportadora",
-    objective: "Modernização da presença digital, facilitação do canal de cotações e aproximação comunitária através da tecnologia.",
-  },
 };
 
 export const nav = [

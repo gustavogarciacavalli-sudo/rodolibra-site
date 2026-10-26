@@ -1,9 +1,8 @@
 # Rodolibra — Site Institucional de Transporte & Logística
 
-> **Projeto de Extensão Universitária:** TI e Sociedade  
 > **Empresa Parceira:** Rodolibra Transportes  
 > **Contato oficial:** +55 41 99891-3381
-> **Stack:** Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Lucide Icons
+> **Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Lucide Icons
 
 ---
 
@@ -66,7 +65,7 @@ rodolibra-site/
 ├── components/
 │   ├── Header.tsx           # Menu de navegação fixo, responsivo com drawer mobile
 │   ├── Hero.tsx             # 1ª dobra com chamada principal e consulta de modalidades
-│   ├── About.tsx            # Apresentação da empresa e contexto da extensão universitária
+│   ├── About.tsx            # Apresentação da empresa e cobertura operacional
 │   ├── Services.tsx         # Cards de serviços com ícones Lucide e atalho para cotação
 │   ├── Quote.tsx            # Formulário de cotação integrado ao WhatsApp
 │   ├── Faq.tsx              # Acordeão de perguntas frequentes com busca em tempo real

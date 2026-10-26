@@ -5,7 +5,6 @@ import {
   ArrowUp,
   Phone,
   MapPin,
-  GraduationCap,
   ShieldCheck,
 } from "lucide-react";
 import { nav, site, waLink } from "@/lib/site";
@@ -51,7 +50,7 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Coluna 3: Atendimento & Extensão Universitária */}
+          {/* Coluna 3: Atendimento */}
           <div className="lg:col-span-4 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-accent-light">
               Atendimento
@@ -76,17 +75,6 @@ export function Footer() {
                 <span>Atendimento em todo o Brasil</span>
               </p>
             </div>
-
-            <div className="mt-4 rounded-lg bg-white/5 p-3.5 border border-white/10 text-xs text-slate-300">
-              <div className="flex items-center gap-1.5 font-bold text-accent-light mb-1">
-                <GraduationCap size={15} />
-                <span>Projeto TI e Sociedade</span>
-              </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed">
-                Desenvolvimento institucional realizado em parceria de extensão
-                universitária.
-              </p>
-            </div>
           </div>
         </div>
 
@@ -97,20 +85,15 @@ export function Footer() {
             direitos reservados.
           </p>
 
-          <div className="flex items-center gap-4">
-            <span className="text-[11px]">
-              Projeto de Extensão “TI e Sociedade”
-            </span>
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-300 hover:bg-white/10 hover:text-white transition"
-              aria-label="Voltar ao início da página"
-            >
-              <span>Topo</span>
-              <ArrowUp size={13} />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-300 hover:bg-white/10 hover:text-white transition"
+            aria-label="Voltar ao início da página"
+          >
+            <span>Topo</span>
+            <ArrowUp size={13} />
+          </button>
         </div>
       </div>
     </footer>
