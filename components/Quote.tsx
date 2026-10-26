@@ -38,6 +38,37 @@ const initialForm: FormState = {
   obs: "",
 };
 
+const FIELD_LIMITS = {
+  location: 100,
+  cargo: 160,
+  weight: 60,
+  dimensions: 120,
+  observations: 500,
+} as const;
+
+const MAX_QUANTITY = 9999;
+const MAX_WHATSAPP_MESSAGE_LENGTH = 1800;
+const MAX_WHATSAPP_URL_LENGTH = 2000;
+
+function getLocalDateIso(): string {
+  const now = new Date();
+  const localTime = new Date(now.getTime() - now.getTimezoneOffset() * 60_000);
+  return localTime.toISOString().slice(0, 10);
+}
+
+function isValidIsoDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+
+  return (
+    date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day
+  );
+}
+
 export function generateWhatsAppMessage(f: FormState): string {
   const line = (label: string, val: string) =>
     `• *${label}:* ${val.trim() || "A definir"}`;
@@ -57,7 +88,10 @@ export function generateWhatsAppMessage(f: FormState): string {
     line("Volume ou dimensões", f.dimensoes),
     line("Quantidade de volumes", f.quantidadeVolumes),
     line("Data prevista para coleta", dataColeta),
-    line("Observações complementares", f.obs || "Sem observações"),
+    line(
+      "Observações complementares",
+      f.obs.trim() ? f.obs : "Sem observações"
+    ),
     "",
     "_Enviado pelo site oficial da Rodolibra._",
   ];
@@ -81,13 +115,37 @@ export default function Quote() {
     setForm((prev) => ({ ...prev, [key]: val }));
   };
 
-  const isOrigemValid = form.origem.trim().length > 0;
-  const isDestinoValid = form.destino.trim().length > 0;
-  const isMercadoriaValid = form.mercadoria.trim().length > 0;
-  const isPesoValid = form.peso.trim().length > 0;
-  const isDimensoesValid = form.dimensoes.trim().length > 0;
-  const isQuantidadeVolumesValid = Number(form.quantidadeVolumes) >= 1;
-  const isDataColetaValid = form.dataColeta.trim().length > 0;
+  const todayIso = getLocalDateIso();
+  const quantity = Number(form.quantidadeVolumes);
+  const currentMessage = generateWhatsAppMessage(form);
+  const currentWhatsAppLink = waLink(currentMessage);
+
+  const isOrigemValid =
+    form.origem.trim().length > 0 &&
+    form.origem.length <= FIELD_LIMITS.location;
+  const isDestinoValid =
+    form.destino.trim().length > 0 &&
+    form.destino.length <= FIELD_LIMITS.location;
+  const isMercadoriaValid =
+    form.mercadoria.trim().length > 0 &&
+    form.mercadoria.length <= FIELD_LIMITS.cargo;
+  const isPesoValid =
+    form.peso.trim().length > 0 && form.peso.length <= FIELD_LIMITS.weight;
+  const isDimensoesValid =
+    form.dimensoes.trim().length > 0 &&
+    form.dimensoes.length <= FIELD_LIMITS.dimensions;
+  const isQuantidadeVolumesValid =
+    /^\d+$/.test(form.quantidadeVolumes) &&
+    Number.isSafeInteger(quantity) &&
+    quantity >= 1 &&
+    quantity <= MAX_QUANTITY;
+  const isDataColetaValid =
+    isValidIsoDate(form.dataColeta) && form.dataColeta >= todayIso;
+  const isObservacoesValid =
+    form.obs.length <= FIELD_LIMITS.observations;
+  const isWhatsAppPayloadValid =
+    currentMessage.length <= MAX_WHATSAPP_MESSAGE_LENGTH &&
+    currentWhatsAppLink.length <= MAX_WHATSAPP_URL_LENGTH;
   const isFormValid =
     isOrigemValid &&
     isDestinoValid &&
@@ -95,9 +153,9 @@ export default function Quote() {
     isPesoValid &&
     isDimensoesValid &&
     isQuantidadeVolumesValid &&
-    isDataColetaValid;
-
-  const currentMessage = generateWhatsAppMessage(form);
+    isDataColetaValid &&
+    isObservacoesValid &&
+    isWhatsAppPayloadValid;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,8 +165,7 @@ export default function Quote() {
       return;
     }
 
-    const link = waLink(currentMessage);
-    window.open(link, "_blank", "noopener,noreferrer");
+    window.open(currentWhatsAppLink, "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
@@ -273,6 +330,7 @@ export default function Quote() {
                         value={form.origem}
                         onChange={(e) => updateField("origem", e.target.value)}
                         placeholder="Ex: Curitiba / PR"
+                        maxLength={FIELD_LIMITS.location}
                         className={`field ${
                           touched && !isOrigemValid ? "field-error" : ""
                         }`}
@@ -300,6 +358,7 @@ export default function Quote() {
                         value={form.destino}
                         onChange={(e) => updateField("destino", e.target.value)}
                         placeholder="Ex: Joinville / SC"
+                        maxLength={FIELD_LIMITS.location}
                         className={`field ${
                           touched && !isDestinoValid ? "field-error" : ""
                         }`}
@@ -331,6 +390,7 @@ export default function Quote() {
                         updateField("mercadoria", e.target.value)
                       }
                       placeholder="Ex: Peças industriais, caixas embaladas, insumos..."
+                      maxLength={FIELD_LIMITS.cargo}
                       className={`field ${
                         touched && !isMercadoriaValid ? "field-error" : ""
                       }`}
@@ -360,6 +420,7 @@ export default function Quote() {
                         value={form.peso}
                         onChange={(e) => updateField("peso", e.target.value)}
                         placeholder="Ex: 350 kg ou 2 toneladas"
+                        maxLength={FIELD_LIMITS.weight}
                         className={`field ${
                           touched && !isPesoValid ? "field-error" : ""
                         }`}
@@ -384,6 +445,7 @@ export default function Quote() {
                           updateField("dimensoes", e.target.value)
                         }
                         placeholder="Ex: 120 x 80 x 100 cm por volume"
+                        maxLength={FIELD_LIMITS.dimensions}
                         className={`field ${
                           touched && !isDimensoesValid ? "field-error" : ""
                         }`}
@@ -407,6 +469,8 @@ export default function Quote() {
                         id="quantidadeVolumes"
                         type="number"
                         min="1"
+                        max={MAX_QUANTITY}
+                        step="1"
                         inputMode="numeric"
                         value={form.quantidadeVolumes}
                         onChange={(e) =>
@@ -420,6 +484,11 @@ export default function Quote() {
                         }`}
                         required
                       />
+                      {touched && !isQuantidadeVolumesValid && (
+                        <p className="mt-1 text-xs text-red-600 font-medium">
+                          Informe um número inteiro entre 1 e {MAX_QUANTITY}.
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -434,6 +503,7 @@ export default function Quote() {
                       <input
                         id="dataColeta"
                         type="date"
+                        min={todayIso}
                         value={form.dataColeta}
                         onChange={(e) =>
                           updateField("dataColeta", e.target.value)
@@ -443,6 +513,11 @@ export default function Quote() {
                         }`}
                         required
                       />
+                      {touched && !isDataColetaValid && (
+                        <p className="mt-1 text-xs text-red-600 font-medium">
+                          Informe uma data válida a partir de hoje.
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -460,8 +535,17 @@ export default function Quote() {
                       value={form.obs}
                       onChange={(e) => updateField("obs", e.target.value)}
                       placeholder="Ex: Restrição de horário na entrega, controle de temperatura, cuidados de manuseio..."
-                      className="field resize-none"
+                      maxLength={FIELD_LIMITS.observations}
+                      className={`field resize-none ${
+                        touched &&
+                        (!isObservacoesValid || !isWhatsAppPayloadValid)
+                          ? "field-error"
+                          : ""
+                      }`}
                     />
+                    <p className="mt-1 text-right text-xs text-slate-500">
+                      {form.obs.length}/{FIELD_LIMITS.observations}
+                    </p>
                   </div>
 
                   {/* Botão de Envio */}
@@ -479,8 +563,9 @@ export default function Quote() {
                       role="alert"
                       className="mt-3.5 rounded-lg border border-red-200 bg-red-50 p-3 text-center text-xs font-medium text-red-700"
                     >
-                      Preencha os campos obrigatórios de origem, destino, carga,
-                      peso, dimensões, quantidade de volumes e data de coleta.
+                      {!isWhatsAppPayloadValid
+                        ? "Reduza o texto dos campos para enviar a cotação pelo WhatsApp."
+                        : "Revise os campos destacados. A quantidade deve ser um número inteiro válido e a coleta não pode estar no passado."}
                     </div>
                   )}
 
@@ -495,7 +580,7 @@ export default function Quote() {
                         abaixo:
                       </p>
                       <a
-                        href={waLink(currentMessage)}
+                        href={currentWhatsAppLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-2 inline-flex items-center gap-1 font-bold text-accent hover:underline"

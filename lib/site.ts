@@ -42,7 +42,7 @@ export const site = {
   formattedPhone: "+55 41 99891-3381",
   
   // Campos estruturados para substituição posterior após autorização
-  email: "contato@rodolibra.com.br", // Provisório / Sugerido
+  email: "financeiro@rodolibra.com.br",
   isEmailProvisional: true,
   
   hours: "Segunda a Sexta: 08h às 18h",
